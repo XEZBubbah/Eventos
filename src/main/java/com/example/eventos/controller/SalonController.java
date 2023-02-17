@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/salon")
+@RequestMapping("/salones")
 public class SalonController {
 
     @Autowired
@@ -28,5 +28,10 @@ public class SalonController {
     @PostMapping
     public ResultadoDto<SalonDto> save(@RequestBody SalonDto salonDto) {
         return this.salonBl.save(salonDto);
+    }
+
+    @PutMapping
+    public ResultadoDto<SalonDto> update(@RequestBody SalonDto salonDto) {
+        return this.salonBl.update(salonDto);
     }
 }

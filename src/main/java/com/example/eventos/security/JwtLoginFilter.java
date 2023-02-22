@@ -35,9 +35,10 @@ public class JwtLoginFilter extends UsernamePasswordAuthenticationFilter {
                                             Authentication authResult) throws IOException, ServletException {
 
         var detallesUsuario = (DetallesUsuarioImpl) authResult.getPrincipal();
-        String token = TokenUtils.crearToken(detallesUsuario.getUsername(), detallesUsuario.getNombreCompleto());
+        String token = TokenUtils.crearToken(detallesUsuario.getUsername(), detallesUsuario.getNombreCompleto(), detallesUsuario);
 
         response.addHeader("Authorization", "Bearer " + token);
+        response.getWriter().write("{"+"'Authorization': 'Bearer " + token+"'}");
         response.getWriter().flush();
         super.successfulAuthentication(request, response, chain, authResult);
     }

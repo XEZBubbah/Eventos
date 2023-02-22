@@ -11,6 +11,7 @@ public class DetallesUsuarioImpl implements UserDetails {
 
     private UserEntity usuario;
 
+
     public DetallesUsuarioImpl(UserEntity user) {
         this.usuario = user;
     }
@@ -52,5 +53,9 @@ public class DetallesUsuarioImpl implements UserDetails {
 
     public String getNombreCompleto() {
         return this.usuario.getFullname();
+    }
+
+    public UserEntity getUsuarioEntity() {
+        return this.usuario;
     }
 }

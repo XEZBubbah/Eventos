@@ -14,11 +14,12 @@ public class TokenUtils {
     private final static Long VIGENCIA = 3600L * 1000;
 
 
-    public static String crearToken (String nickname, String fullname) {
+    public static String crearToken (String nickname, String fullname, DetallesUsuarioImpl detallesUsuario) {
         Date fechaExpiracion = new Date(System.currentTimeMillis() + VIGENCIA);
         Map<String, Object> informacionExtra = new HashMap<>();
         informacionExtra.put("nickname", nickname);
         informacionExtra.put("fullname", fullname);
+        informacionExtra.put("todoUsuario", detallesUsuario.getUsuarioEntity());
         return Jwts.builder()
                 .setSubject(nickname)
                 .setExpiration(fechaExpiracion)
